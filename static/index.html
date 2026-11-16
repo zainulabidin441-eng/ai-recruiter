@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zig Recruitbot</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">H</div>
+      <div>
+        <h1>Zig Recruitbot</h1>
+        <p>Find developers in Pakistan by just asking</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span id="statusPills" class="pills"></span>
+      <button id="sideToggle" class="btn ghost" type="button">Shortlist <b id="shortCount">0</b></button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="chat" id="chatPane" aria-label="Recruiter chat">
+      <div id="messages" class="messages" aria-live="polite"></div>
+
+      <div class="dropveil" id="dropVeil">Drop CVs here (PDF, PNG, JPG)</div>
+
+      <div class="composer-wrap">
+        <div id="suggestions" class="suggestions"></div>
+        <form id="composer" class="composer" autocomplete="off">
+          <label class="attach" title="Upload CVs (PDF, scan or photo)">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.4 11.6l-9.2 9.2a6 6 0 0 1-8.5-8.5l9.2-9.2a4 4 0 0 1 5.7 5.7l-9.2 9.2a2 2 0 0 1-2.8-2.8l8.5-8.5"/></svg>
+            <input id="cvInput" type="file" multiple accept=".pdf,.png,.jpg,.jpeg,.webp,.bmp,.tif,.tiff" hidden>
+            <span class="sr">Upload CVs</span>
+          </label>
+          <input id="msg" type="text" placeholder="Describe who you need, e.g. Python developer in Islamabad, 3 years, FastAPI" aria-label="Message">
+          <button class="btn primary" type="submit" id="sendBtn">Send</button>
+        </form>
+      </div>
+    </section>
+
+    <aside class="side" id="side" aria-label="Shortlist">
+      <div class="side-head">
+        <h2>Shortlist</h2>
+        <button id="sideClose" class="btn ghost small" type="button">Close</button>
+      </div>
+      <div id="shortList" class="short-list"></div>
+      <a id="sheetBtn" class="btn primary block" href="/api/hr-sheet" download>Download HR sheet (.xlsx)</a>
+
+      <div class="side-block">
+        <h3>Your details for emails</h3>
+        <input id="setName" type="text" placeholder="Your name">
+        <input id="setCompany" type="text" placeholder="Company name">
+      </div>
+
+      <div class="side-block">
+        <h3>Rejected candidates</h3>
+        <p class="muted">Rejected people stay hidden in later searches.</p>
+        <button id="resetRejected" class="btn ghost small" type="button">Bring them back</button>
+      </div>
+    </aside>
+  </main>
+
+  <div id="toast" class="toast" role="status" hidden></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
